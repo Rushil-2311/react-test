@@ -1,10 +1,11 @@
-import "./App.css";
+import { AppWrapper } from "./App.style";
+import Routers from "./routes/router";
 
 function App() {
   return (
-    <div className="App">
-      <div>hello world</div>
-    </div>
+    <AppWrapper>
+      <Routers />
+    </AppWrapper>
   );
 }
 
