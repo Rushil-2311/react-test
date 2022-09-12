@@ -22,6 +22,7 @@ interface appInputProps {
   name: string;
   type?: string;
   required?: boolean;
+  errorText: string | null;
 }
 
 const AppInput: FunctionComponent<appInputProps> = ({
@@ -31,6 +32,7 @@ const AppInput: FunctionComponent<appInputProps> = ({
   name,
   type,
   required,
+  errorText,
 }) => {
   return (
     <AppInputWrapper>
@@ -43,6 +45,7 @@ const AppInput: FunctionComponent<appInputProps> = ({
           onChange={onChange}
           required={required ? required : false}
         />
+        {errorText && <span>{errorText}</span>}
       </label>
     </AppInputWrapper>
   );

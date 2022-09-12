@@ -1,19 +1,37 @@
 import React, { useState } from "react";
 import { AppButton } from "../../component/common/AppButton";
 import AppInput from "../../component/common/AppInput";
-import { formDataInputsForSignIn } from "../../services/interface/service.signin";
+import { checkIfEmailIdExist } from "../../helper/helperMethods";
+import {
+  FormDataInputsForSignIn,
+  FormErrorsForSignIn,
+} from "../../types/interface/service.signin";
 
 const SignIn = () => {
-  const [formData, setFormData] = useState<formDataInputsForSignIn>({
+  const [formData, setFormData] = useState<FormDataInputsForSignIn>({
     password: "",
     email: "",
   });
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const [error, setError] = useState<FormErrorsForSignIn>({
+    password: null,
+    email: null,
+  });
+  const handleSubmit = (e: any) => {
+    if (!checkIfEmailIdExist(formData.email)) {
+      return setFromsError("email", "Your credentials are worng");
+    }
+    e.preventDefault();
   };
   const setFromDataValues = (type: string, value: string | number) => {
     setFormData((prev) => {
+      return {
+        ...prev,
+        [type]: value,
+      };
+    });
+  };
+  const setFromsError = (type: string, value: string | null) => {
+    setError((prev) => {
       return {
         ...prev,
         [type]: value,
@@ -28,6 +46,7 @@ const SignIn = () => {
         name="email"
         type="email"
         value={formData.email}
+        errorText={error.email}
         onChange={(e) => setFromDataValues("email", e.target.value)}
         required
       />
@@ -36,10 +55,11 @@ const SignIn = () => {
         name="password"
         type="password"
         value={formData.password}
+        errorText={error.password}
         onChange={(e) => setFromDataValues("password", e.target.value)}
         required
       />
-      <AppButton buttonName="Submit" />
+      <AppButton buttonName="Submit" onClick={(e: any) => handleSubmit(e)} />
     </form>
   );
 };

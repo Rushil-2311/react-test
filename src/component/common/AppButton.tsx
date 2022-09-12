@@ -19,7 +19,7 @@ const ButtonWrapper = styled("button")`
 
 interface buttonProps {
   buttonName: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 export const AppButton: FunctionComponent<buttonProps> = ({
@@ -27,13 +27,7 @@ export const AppButton: FunctionComponent<buttonProps> = ({
   onClick,
 }) => {
   return (
-    <ButtonWrapper
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}
-    >
+    <ButtonWrapper onClick={onClick} type="submit">
       {buttonName}
     </ButtonWrapper>
   );
