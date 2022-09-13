@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { AppButton } from "../../component/common/AppButton";
 import AppInput from "../../component/common/AppInput";
-import { checkIfEmailIdExist } from "../../helper/helperMethods";
+import {
+  checkIfEmailIdExist,
+  checkPassowrdIsValid,
+  setCurrentLoginUserInfo,
+} from "../../helper/helperMethods";
 import {
   FormDataInputsForSignIn,
   FormErrorsForSignIn,
 } from "../../types/interface/service.signin";
-
+import { useNavigate } from "react-router-dom";
+import * as S from "../signup/signupStyle";
 const SignIn = () => {
   const [formData, setFormData] = useState<FormDataInputsForSignIn>({
     password: "",
@@ -16,11 +21,17 @@ const SignIn = () => {
     password: null,
     email: null,
   });
+  const navigate = useNavigate();
   const handleSubmit = (e: any) => {
+    e.preventDefault();
     if (!checkIfEmailIdExist(formData.email)) {
       return setFromsError("email", "Your credentials are worng");
     }
-    e.preventDefault();
+    if (!checkPassowrdIsValid(formData.email, formData.password)) {
+      return setFromsError("email", "Your credentials are worng");
+    }
+    setCurrentLoginUserInfo(formData.email, formData.password);
+    navigate("/dashboard");
   };
   const setFromDataValues = (type: string, value: string | number) => {
     setFormData((prev) => {
@@ -60,6 +71,10 @@ const SignIn = () => {
         required
       />
       <AppButton buttonName="Submit" onClick={(e: any) => handleSubmit(e)} />
+      <S.AlreadyHaveAcc>
+        Don't have an account?{" "}
+        <S.LoginSpan onClick={() => navigate("/signup")}>Signup</S.LoginSpan>{" "}
+      </S.AlreadyHaveAcc>
     </form>
   );
 };
