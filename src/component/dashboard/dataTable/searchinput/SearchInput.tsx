@@ -37,7 +37,7 @@ const SearchInput: FunctionComponent<SearchInputProps> = ({
   const onChangeHandler = (e: any) => {
     const value = e.target.value;
     setSearchText(value);
-    if (value == "") {
+    if (value === "") {
       return setFilterData(apiData);
     }
     const result = apiData?.filter((data: Todos) => {

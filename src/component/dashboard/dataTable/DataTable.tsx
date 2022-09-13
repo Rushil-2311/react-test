@@ -8,7 +8,6 @@ import SearchInput from "./searchinput/SearchInput";
 import { TableHead } from "./tablehead/TableHead";
 import { useNavigate } from "react-router-dom";
 import TableRow from "./tablerow/TableRow";
-import { useLocation } from "react-router-dom";
 import { useQuery } from "../../../hooks/useQuery";
 import { returnFeatchUrl } from "../../../helper/helperMethods";
 const DataTable = () => {
@@ -24,7 +23,7 @@ const DataTable = () => {
     if (query.get("_start") === null || query.get("_limit") === null) {
       return navigate("/dashboard?_start=0&_limit=10");
     }
-  }, []);
+  });
 
   return (
     <DataTableWrapper>
