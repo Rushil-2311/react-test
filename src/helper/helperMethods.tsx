@@ -56,9 +56,9 @@ const genrateRandomId = () => {
 };
 
 export const returnFeatchUrl = (query: any) => {
-  let url = `http://jsonplaceholder.typicode.com/todos?`;
+  let url = `https://jsonplaceholder.typicode.com/todos?`;
   if (query.get("_start") === null || query.get("_limit") === null) {
-    return (url = `http://jsonplaceholder.typicode.com/todos?_start=0&_limit=10`);
+    return (url = `https://jsonplaceholder.typicode.com/todos?_start=0&_limit=10`);
   }
 
   let otherPart = `_start=${query.get("_start")}&_limit=${query.get("_limit")}`;
