@@ -1,4 +1,6 @@
+import { FunctionComponent } from "react";
 import styled from "styled-components";
+import { Todos } from "../../../../types/interface/dashboard";
 const SearchInputWrapper = styled("input")`
   display: block;
   width: 100%;
@@ -18,9 +20,43 @@ const SearchInputWrapper = styled("input")`
     outline: none;
   }
 `;
-
-const SearchInput = () => {
-  return <SearchInputWrapper placeholder="Search something...." />;
+interface SearchInputProps {
+  searchText: string;
+  setSearchText: (e: any) => void;
+  setFilterData: any;
+  filterData: Array<Todos | []>;
+  apiData: any;
+}
+const SearchInput: FunctionComponent<SearchInputProps> = ({
+  searchText,
+  setSearchText,
+  apiData,
+  filterData,
+  setFilterData,
+}) => {
+  const onChangeHandler = (e: any) => {
+    const value = e.target.value;
+    setSearchText(value);
+    if (value == "") {
+      return setFilterData(apiData);
+    }
+    const result = apiData?.filter((data: Todos) => {
+      return data.title.toLowerCase().includes(value.toLowerCase());
+    });
+    if (result.length) {
+      return setFilterData(result);
+    }
+    if (!result.length) {
+      return setFilterData([]);
+    }
+  };
+  return (
+    <SearchInputWrapper
+      placeholder="Search something...."
+      value={searchText}
+      onChange={onChangeHandler}
+    />
+  );
 };
 
 export default SearchInput;

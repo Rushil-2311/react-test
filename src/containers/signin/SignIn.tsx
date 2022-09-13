@@ -9,7 +9,7 @@ import {
 import {
   FormDataInputsForSignIn,
   FormErrorsForSignIn,
-} from "../../types/interface/service.signin";
+} from "../../types/interface/signin";
 import { useNavigate } from "react-router-dom";
 import * as S from "../signup/signupStyle";
 const SignIn = () => {

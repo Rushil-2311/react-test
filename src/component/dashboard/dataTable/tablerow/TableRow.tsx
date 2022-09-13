@@ -1,11 +1,19 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { Todos } from "../../../../types/interface/dashboard";
 
-const TableRow = () => {
+interface TableRowData {
+  data: Todos;
+  key: number;
+}
+const TableRow: FunctionComponent<TableRowData> = ({ data, key }) => {
   return (
-    <tr>
-      <td>1</td>
-      <td>luke</td>
-      <td>swayer</td>
+    <tr key={key}>
+      <td>{data.id}</td>
+      <td>{data.title}</td>
+      <td>
+        <input type="checkbox" checked={data.completed} />
+      </td>
+      <td>{data.userId}</td>
     </tr>
   );
 };

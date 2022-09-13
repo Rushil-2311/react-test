@@ -5,10 +5,7 @@ import {
   checkIfEmailIdExist,
   storeDataIntoDb,
 } from "../../helper/helperMethods";
-import {
-  FormDataInputs,
-  FormErrors,
-} from "../../types/interface/service.signup";
+import { FormDataInputs, FormErrors } from "../../types/interface/signup";
 import * as S from "./signupStyle";
 import { useNavigate } from "react-router-dom";
 const SignUp = () => {
