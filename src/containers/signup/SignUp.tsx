@@ -9,8 +9,10 @@ import {
   FormDataInputs,
   FormErrors,
 } from "../../types/interface/service.signup";
-
+import * as S from "./signupStyle";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormDataInputs>({
     name: "",
     password: "",
@@ -87,6 +89,10 @@ const SignUp = () => {
         required
       />
       <AppButton buttonName="Submit" onClick={(e: any) => handleSubmit(e)} />
+      <S.AlreadyHaveAcc>
+        Already have an account?{" "}
+        <S.LoginSpan onClick={() => navigate("/signin")}>Login</S.LoginSpan>{" "}
+      </S.AlreadyHaveAcc>
     </form>
   );
 };
