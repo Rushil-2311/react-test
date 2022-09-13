@@ -22,8 +22,15 @@ const SignIn = () => {
     email: null,
   });
   const navigate = useNavigate();
+  const clearErrors = () => {
+    setError({
+      password: null,
+      email: null,
+    });
+  };
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    clearErrors();
     if (!checkIfEmailIdExist(formData.email)) {
       return setFromsError("email", "Your credentials are worng");
     }
@@ -31,7 +38,7 @@ const SignIn = () => {
       return setFromsError("email", "Your credentials are worng");
     }
     setCurrentLoginUserInfo(formData.email, formData.password);
-    navigate("/dashboard/?_start=0&_limit=5");
+    navigate("/dashboard/?_start=0&_limit=10");
   };
   const setFromDataValues = (type: string, value: string | number) => {
     setFormData((prev) => {

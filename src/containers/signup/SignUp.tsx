@@ -23,8 +23,18 @@ const SignUp = () => {
     email: null,
   });
 
+  const clearErrors = () => {
+    setError({
+      name: null,
+      password: null,
+      username: null,
+      email: null,
+    });
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    clearErrors();
     if (checkIfEmailIdExist(formData.email)) {
       return setFromsError("email", "This email is already taken");
     }
