@@ -45,6 +45,7 @@ const SignUp = () => {
       );
     }
     storeDataIntoDb(formData);
+    navigate("/dashboard/?_start=0&_limit=10");
   };
   const setFromDataValues = (type: string, value: string) => {
     setFormData((prev) => {
