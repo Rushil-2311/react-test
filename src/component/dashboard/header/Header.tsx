@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const HeaderMainDiv = styled("div")`
   background-color: #4a4e69;
@@ -23,9 +24,18 @@ const Logout = styled("button")`
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <HeaderMainDiv>
-      <Logout>Logout</Logout>
+      <Logout
+        onClick={() => {
+          localStorage.removeItem("currentUserId");
+          navigate("/signin");
+        }}
+      >
+        Logout
+      </Logout>
     </HeaderMainDiv>
   );
 };

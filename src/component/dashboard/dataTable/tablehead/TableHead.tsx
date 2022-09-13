@@ -15,8 +15,6 @@ export const TableHead: FunctionComponent<TableHeadProps> = ({
   const sortTableData = (type: string, sortingOrder: boolean) => {
     setAsending(sortingOrder);
     let data = filterData.slice();
-    console.log(data);
-    console.log(type, "type");
     if (sortingOrder) {
       data.sort((a: any, b: any) => {
         if (a[type] > b[type]) return 1;

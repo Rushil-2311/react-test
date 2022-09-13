@@ -28,6 +28,12 @@ const SignUp = () => {
     if (checkIfEmailIdExist(formData.email)) {
       return setFromsError("email", "This email is already taken");
     }
+    if (formData.password.length < 4) {
+      return setFromsError(
+        "password",
+        "Password length is must be greater than 4"
+      );
+    }
     storeDataIntoDb(formData);
   };
   const setFromDataValues = (type: string, value: string) => {

@@ -6,18 +6,26 @@ import { DataTableWrapper } from "./dataTable.styles";
 import Pagination from "./pagination/Pagination";
 import SearchInput from "./searchinput/SearchInput";
 import { TableHead } from "./tablehead/TableHead";
+import { useNavigate } from "react-router-dom";
 import TableRow from "./tablerow/TableRow";
-
+import { useLocation } from "react-router-dom";
+import { useQuery } from "../../../hooks/useQuery";
+import { returnFeatchUrl } from "../../../helper/helperMethods";
 const DataTable = () => {
   const [filterData, setFilterData] = useState<Array<Todos>>([]);
   const [searchText, setSearchText] = useState<string>("");
-  const { isLoading, serverError, apiData } = useFetch(
-    `http://jsonplaceholder.typicode.com/todos?_start=0&_limit=5`
-  );
+  let query = useQuery();
+  const navigate = useNavigate();
+  const { isLoading, serverError, apiData } = useFetch(returnFeatchUrl(query));
   useEffect(() => {
-    console.log("calling");
     setFilterData(apiData);
-  }, [apiData]);
+  }, [apiData, query]);
+  useEffect(() => {
+    if (query.get("_start") === null || query.get("_limit") === null) {
+      return navigate("/dashboard?_start=0&_limit=10");
+    }
+  }, []);
+
   return (
     <DataTableWrapper>
       <SearchInput
