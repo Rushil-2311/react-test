@@ -1,4 +1,4 @@
-import { FormDataInputs } from "../types/interface/service.signup";
+import { FormDataInputs } from "../types/interface/signup";
 
 export const checkPassowrdIsValid = (email: string, password: any) => {
   let getUsersData: any = localStorage.getItem("AllUsers");
