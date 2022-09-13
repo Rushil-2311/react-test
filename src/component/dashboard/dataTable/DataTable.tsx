@@ -23,7 +23,7 @@ const DataTable = () => {
     if (query.get("_start") === null || query.get("_limit") === null) {
       return navigate("/dashboard?_start=0&_limit=10");
     }
-  });
+  }, []);
 
   return (
     <DataTableWrapper>
