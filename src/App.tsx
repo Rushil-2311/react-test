@@ -10,7 +10,7 @@ function App() {
       navigate("/signIn");
       return;
     }
-  });
+  }, []);
   return (
     <AppWrapper>
       <Routers />
