@@ -31,7 +31,7 @@ const SignIn = () => {
       return setFromsError("email", "Your credentials are worng");
     }
     setCurrentLoginUserInfo(formData.email, formData.password);
-    navigate("/dashboard");
+    navigate("/dashboard/?_start=0&_limit=5");
   };
   const setFromDataValues = (type: string, value: string | number) => {
     setFormData((prev) => {

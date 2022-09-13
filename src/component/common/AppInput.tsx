@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const AppInputWrapper = styled("div")`
+  margin-bottom: 10px;
   label {
     margin-bottom: 0.5em;
     color: #444;
@@ -10,8 +11,12 @@ const AppInputWrapper = styled("div")`
   input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 4px;
     width: 100%;
+  }
+  span {
+    color: red;
+    padding-top: 3px;
   }
 `;
 
@@ -36,7 +41,7 @@ const AppInput: FunctionComponent<appInputProps> = ({
 }) => {
   return (
     <AppInputWrapper>
-      <label>
+      <label style={{ paddingTop: "6px" }}>
         {label}:
         <input
           name={name}
