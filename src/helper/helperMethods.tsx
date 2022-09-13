@@ -45,7 +45,7 @@ export const storeDataIntoDb = (formData: FormDataInputs) => {
   } else {
     const createAllUserData = [
       ...JSON.parse(getUsersData),
-      { formData, id: genrateRandomId() },
+      { ...formData, id: genrateRandomId() },
     ];
     localStorage.setItem("AllUsers", JSON.stringify(createAllUserData));
   }
