@@ -37,7 +37,7 @@ const DataTable = () => {
       {isLoading ? (
         <AppLoader text="Featching data ...." />
       ) : !isLoading && serverError ? (
-        <AppLoader text="Error in fetching data ..." />
+        <AppLoader text="Error while fetching data ..." />
       ) : filterData?.length ? (
         <React.Fragment>
           <table className="table">
